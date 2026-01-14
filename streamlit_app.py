@@ -13,8 +13,8 @@ PROFILE_PHOTO_URL = "https://raw.githubusercontent.com/ab39912/PORTFOLIO_AMEYA/m
 
 # GitHub Repository Links - Update with your actual repo URLs
 GITHUB_REPOS = {
-    "betting_edge": "https://github.com/ab39912/betting-edge",
-    "smart_grocery": "https://github.com/ab39912/smart-grocery"
+    "betting_edge": "https://github.com/ab39912/betting_edge",
+    "smart_grocery": "https://github.com/ab39912/GroceryVision"
 }
 # =========================================================
 
