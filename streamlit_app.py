@@ -4,6 +4,20 @@ from datetime import datetime
 
 st.set_page_config(page_title="Ameya Bhalerao", page_icon="🚀", layout="wide", initial_sidebar_state="collapsed")
 
+# ===================== CONFIGURATION =====================
+# Update these URLs with your actual links
+
+# Profile Photo - Add your photo to your GitHub repo and update the path
+# Example: https://raw.githubusercontent.com/ab39912/portfolio/main/profile.jpg
+PROFILE_PHOTO_URL = "https://raw.githubusercontent.com/ab39912/portfolio/main/profile.jpg"
+
+# GitHub Repository Links - Update with your actual repo URLs
+GITHUB_REPOS = {
+    "betting_edge": "https://github.com/ab39912/betting-edge",
+    "smart_grocery": "https://github.com/ab39912/smart-grocery"
+}
+# =========================================================
+
 # Dark theme CSS
 st.markdown("""
 <style>
@@ -20,6 +34,20 @@ st.markdown("""
         background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0f 70%);
         border-radius: 30px; margin-bottom: 3rem;
     }
+    .profile-photo-container {
+        width: 180px; height: 180px; margin: 0 auto 1.5rem; position: relative;
+    }
+    .profile-photo-container::before {
+        content: ''; position: absolute; inset: -5px; border-radius: 50%;
+        background: linear-gradient(135deg, #64ffda, #7c3aed, #f472b6, #64ffda);
+        background-size: 300% 300%; animation: gradient 4s ease infinite; z-index: 0;
+    }
+    .profile-photo {
+        width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+        position: relative; z-index: 1; border: 4px solid #0a0a0f;
+        transition: transform 0.3s ease;
+    }
+    .profile-photo:hover { transform: scale(1.05); }
     .main-header {
         font-size: 4.5rem; font-weight: 700;
         background: linear-gradient(120deg, #00d4ff, #7c3aed, #f472b6, #00d4ff);
@@ -84,7 +112,8 @@ st.markdown("""
     .exp-list li { margin: 10px 0; line-height: 1.6; }
     .exp-list li::marker { color: #64ffda; }
     
-    .project-card { background: #111119; border: 1px solid #1e1e2e; border-radius: 15px; overflow: hidden; }
+    .project-card { background: #111119; border: 1px solid #1e1e2e; border-radius: 15px; overflow: hidden; transition: all 0.3s ease; }
+    .project-card:hover { border-color: #7c3aed; transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
     .project-content { padding: 1.5rem; }
     .project-title { color: #ccd6f6; font-size: 1.3rem; margin-bottom: 0.5rem; }
     .project-desc { color: #8892b0; line-height: 1.7; margin: 1rem 0; }
@@ -94,6 +123,15 @@ st.markdown("""
     .stat { text-align: center; }
     .stat-value { color: #64ffda; font-size: 1.5rem; font-weight: 600; }
     .stat-label { color: #8892b0; font-size: 0.75rem; }
+    
+    .github-link {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: #1e1e2e; color: #ccd6f6; padding: 10px 20px;
+        border-radius: 8px; text-decoration: none; font-size: 0.9rem;
+        transition: all 0.3s ease; margin-top: 1rem; border: 1px solid transparent;
+    }
+    .github-link:hover { border-color: #64ffda; color: #64ffda; transform: translateY(-2px); }
+    .github-link svg { width: 18px; height: 18px; fill: currentColor; }
     
     .skill-category { margin-bottom: 2rem; }
     .skill-label { color: #ccd6f6; font-size: 1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
@@ -136,21 +174,6 @@ st.markdown("""
     }
     .social-btn:hover { background: #7c3aed; transform: translateY(-5px); }
     
-    .demo-box {
-        background: #0d0d12; border: 1px solid #1e1e2e; border-radius: 12px;
-        padding: 1.5rem; margin-top: 1rem;
-    }
-    .demo-title { color: #64ffda; font-size: 0.9rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
-    
-    .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 3rem 0; }
-    .metric-card {
-        background: #111119; border: 1px solid #1e1e2e; border-radius: 15px;
-        padding: 1.5rem; text-align: center; transition: all 0.3s ease;
-    }
-    .metric-card:hover { border-color: #7c3aed; }
-    .metric-value { color: #64ffda; font-size: 2.5rem; font-weight: 700; }
-    .metric-label { color: #8892b0; font-size: 0.85rem; margin-top: 5px; }
-    
     .footer {
         text-align: center; padding: 3rem 0; margin-top: 4rem;
         border-top: 1px solid #1e1e2e;
@@ -174,14 +197,17 @@ st.markdown("""
 
     @media (max-width: 768px) {
         .main-header { font-size: 2.5rem; }
-        .metric-grid { grid-template-columns: repeat(2, 1fr); }
+        .profile-photo-container { width: 140px; height: 140px; }
     }
 </style>
 """, unsafe_allow_html=True)
 
 # ===================== HERO SECTION =====================
-st.markdown("""
+st.markdown(f"""
 <div class="hero-section">
+    <div class="profile-photo-container">
+        <img src="{PROFILE_PHOTO_URL}" alt="Ameya Bhalerao" class="profile-photo"/>
+    </div>
     <p class="tagline">Data Scientist & ML Engineer</p>
     <h1 class="main-header">Ameya Bhalerao</h1>
     <p class="subtitle">Building intelligent systems that solve real-world problems</p>
@@ -332,8 +358,8 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Project 1
-st.markdown("""
+# Project 1: Betting Edge
+st.markdown(f"""
 <div class="project-card" style="margin-bottom: 2rem;">
     <div class="project-content">
         <h3 class="project-title">🎰 Betting Edge — Sports Analytics Copilot</h3>
@@ -348,13 +374,17 @@ st.markdown("""
             <div class="stat"><div class="stat-value">89%</div><div class="stat-label">Validation Accuracy</div></div>
             <div class="stat"><div class="stat-value">5</div><div class="stat-label">APIs Integrated</div></div>
         </div>
+        <a href="{GITHUB_REPOS['betting_edge']}" class="github-link" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+            View on GitHub
+        </a>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
 
-# Project 2
-st.markdown("""
+# Project 2: SmartGrocery
+st.markdown(f"""
 <div class="project-card" style="margin-bottom: 2rem;">
     <div class="project-content">
         <h3 class="project-title">🛒 SmartGrocery System — Computer Vision</h3>
@@ -368,11 +398,13 @@ st.markdown("""
             <div class="stat"><div class="stat-value">10K</div><div class="stat-label">Images Trained</div></div>
             <div class="stat"><div class="stat-value">90%</div><div class="stat-label">User Satisfaction</div></div>
         </div>
+        <a href="{GITHUB_REPOS['smart_grocery']}" class="github-link" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+            View on GitHub
+        </a>
     </div>
 </div>
 """, unsafe_allow_html=True)
-
-
 
 
 # ===================== SKILLS =====================
