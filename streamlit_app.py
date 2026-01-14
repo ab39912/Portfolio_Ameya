@@ -198,15 +198,6 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ===================== METRICS =====================
-st.markdown("""
-<div class="metric-grid">
-    <div class="metric-card"><div class="metric-value">2.3M+</div><div class="metric-label">Tweets Analyzed</div></div>
-    <div class="metric-card"><div class="metric-value">96%</div><div class="metric-label">Model Accuracy</div></div>
-    <div class="metric-card"><div class="metric-value">90%</div><div class="metric-label">Error Reduction</div></div>
-    <div class="metric-card"><div class="metric-value">30%</div><div class="metric-label">Forecast Improvement</div></div>
-</div>
-""", unsafe_allow_html=True)
 
 # ===================== ABOUT =====================
 st.markdown("""
@@ -245,8 +236,7 @@ with col2:
     <div class="card">
         <h4 style="color: #ccd6f6; margin-bottom: 1rem;">⚡ Quick Facts</h4>
         <p style="color: #8892b0; margin: 12px 0;">🌍 Mumbai → Syracuse, NY</p>
-        <p style="color: #8892b0; margin: 12px 0;">🔬 2 Active Research Projects</p>
-        <p style="color: #8892b0; margin: 12px 0;">💡 Ethics-First AI Advocate</p>
+        <p style="color: #8892b0; margin: 12px 0;">🔬 Active Graduate Researcher</p>
         <p style="color: #8892b0; margin: 12px 0;">🎯 Full-Stack ML Engineer</p>
         <p style="color: #8892b0; margin: 12px 0;">🎓 Graduating May 2026</p>
     </div>
@@ -362,26 +352,6 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-with st.expander("🎮 Try Interactive Demo — Match Prediction"):
-    st.markdown('<div class="demo-box"><p class="demo-title">Simulate Match Prediction</p>', unsafe_allow_html=True)
-    c1, c2 = st.columns(2)
-    with c1:
-        team1 = st.selectbox("Home Team", ["Manchester United", "Liverpool", "Arsenal", "Chelsea", "Man City"], key="t1")
-        home_form = st.slider("Home Form (Last 5)", 0, 15, 10, key="hf")
-    with c2:
-        team2 = st.selectbox("Away Team", ["Liverpool", "Manchester United", "Tottenham", "Newcastle", "Brighton"], key="t2")
-        away_form = st.slider("Away Form (Last 5)", 0, 15, 8, key="af")
-    if st.button("🔮 Predict Outcome", key="pred"):
-        import random
-        h, d, a = random.uniform(0.35,0.5), random.uniform(0.2,0.3), random.uniform(0.2,0.35)
-        t = h+d+a
-        st.success(f"**{team1} vs {team2}**")
-        cc1, cc2, cc3 = st.columns(3)
-        cc1.metric("Home Win", f"{h/t*100:.1f}%")
-        cc2.metric("Draw", f"{d/t*100:.1f}%")
-        cc3.metric("Away Win", f"{a/t*100:.1f}%")
-        st.info("⚠️ Compare with bookmaker odds before placing bets!")
-    st.markdown('</div>', unsafe_allow_html=True)
 
 # Project 2
 st.markdown("""
@@ -402,51 +372,8 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-with st.expander("🎮 Try Interactive Demo — Grocery Detection"):
-    st.markdown('<div class="demo-box"><p class="demo-title">Simulate Grocery Detection</p>', unsafe_allow_html=True)
-    items = st.multiselect("Select items in cart:", ["🍎 Apple", "🍌 Banana", "🥛 Milk", "🍞 Bread", "🧀 Cheese", "🥚 Eggs", "🍅 Tomato", "🥬 Lettuce"], key="grocery")
-    if st.button("🔍 Detect & Recommend", key="detect"):
-        if items:
-            st.success(f"**Detected {len(items)} items** with 96% confidence")
-            recs = {"🍎 Apple": "Try organic honey!", "🍌 Banana": "Peanut butter pairs great!", "🥛 Milk": "Don't forget cereal!", "🍞 Bread": "Fresh butter available!", "🧀 Cheese": "Wine on aisle 5!", "🥚 Eggs": "Bacon is on sale!", "🍅 Tomato": "Fresh basil in produce!", "🥬 Lettuce": "Caesar dressing 20% off!"}
-            for i in items[:3]:
-                st.info(f"**{i}** — {recs.get(i, 'Check our deals!')}")
-        else:
-            st.warning("Select items to detect!")
-    st.markdown('</div>', unsafe_allow_html=True)
 
-# Project 3 - Sentiment
-st.markdown("""
-<div class="project-card" style="margin-bottom: 2rem;">
-    <div class="project-content">
-        <h3 class="project-title">🧠 Sentiment Analysis Engine</h3>
-        <p style="color: #8892b0; font-size: 0.9rem;">Research Project @ NEXIS Lab</p>
-        <p class="project-desc">Analyzed 50K+ tweets achieving 85% sentiment accuracy with BERT-based models, surfacing key discourse trends through demographic and temporal analysis.</p>
-        <div class="project-tags">
-            <span class="tag">BERT</span><span class="tag">RoBERTa</span><span class="tag">PyTorch</span><span class="tag">Transformers</span>
-        </div>
-        <div class="project-stats">
-            <div class="stat"><div class="stat-value">85%</div><div class="stat-label">Accuracy</div></div>
-            <div class="stat"><div class="stat-value">50K+</div><div class="stat-label">Tweets Analyzed</div></div>
-            <div class="stat"><div class="stat-value">30%</div><div class="stat-label">Reliability Boost</div></div>
-        </div>
-    </div>
-</div>
-""", unsafe_allow_html=True)
 
-with st.expander("🎮 Try Interactive Demo — Sentiment Analysis"):
-    st.markdown('<div class="demo-box"><p class="demo-title">Analyze Text Sentiment</p>', unsafe_allow_html=True)
-    txt = st.text_area("Enter text:", "I absolutely love this product! It exceeded all my expectations.", height=100, key="sent")
-    if st.button("🔬 Analyze Sentiment", key="analyze"):
-        pos = ['love','great','amazing','excellent','fantastic','wonderful','best','happy','exceeded','good']
-        neg = ['hate','terrible','awful','worst','bad','disappointing','horrible','sad','angry','poor']
-        tl = txt.lower()
-        pc, nc = sum(w in tl for w in pos), sum(w in tl for w in neg)
-        if pc > nc: s, c, col = "Positive 😊", min(0.85+pc*0.03,0.98), "#64ffda"
-        elif nc > pc: s, c, col = "Negative 😔", min(0.85+nc*0.03,0.98), "#ef4444"
-        else: s, c, col = "Neutral 😐", 0.72, "#f59e0b"
-        st.markdown(f"<h4 style='color:{col};'>Sentiment: {s}</h4><p style='color:#8892b0;'>Confidence: {c*100:.1f}%</p><div style='background:#1e1e2e;border-radius:10px;'><div style='width:{c*100}%;background:{col};height:8px;border-radius:10px;'></div></div>", unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
 
 # ===================== SKILLS =====================
 st.markdown("""
