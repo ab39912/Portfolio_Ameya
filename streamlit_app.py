@@ -9,7 +9,7 @@ st.set_page_config(page_title="Ameya Bhalerao", page_icon="🚀", layout="wide",
 
 # Profile Photo - Add your photo to your GitHub repo and update the path
 # Example: https://raw.githubusercontent.com/ab39912/portfolio/main/profile.jpg
-PROFILE_PHOTO_URL = "https://raw.githubusercontent.com/ab39912/portfolio/main/profile.jpg"
+PROFILE_PHOTO_URL = "/workspaces/Portfolio_Ameya/profile.jpg"
 
 # GitHub Repository Links - Update with your actual repo URLs
 GITHUB_REPOS = {
