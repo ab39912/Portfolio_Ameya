@@ -515,7 +515,7 @@ export default function Portfolio() {
           <Typed texts={["Data Scientist building intelligent systems.","ML Engineer fine-tuning transformers at scale.","AI Researcher exploring NLP & computer vision.","Full-Stack Developer deploying on AWS."]} />
         </p>
 
-        <div style={{display:"flex",gap:16,marginTop:32,animation:"slideIn 0.6s ease 0.7s both"}}>
+        <div style={{display:"flex",gap:16,marginTop:32,flexWrap:"wrap",animation:"slideIn 0.6s ease 0.7s both"}}>
           <button onClick={()=>setContactOpen(true)} style={{
             padding:"14px 32px",borderRadius:10,fontSize:14,fontWeight:600,cursor:"pointer",
             background:"#f1f5f9",color:"#0f172a",border:"none",transition:"all 0.2s",
@@ -523,6 +523,16 @@ export default function Portfolio() {
             onMouseEnter={e=>{e.target.style.background="#cbd5e1";e.target.style.transform="translateY(-2px)";}}
             onMouseLeave={e=>{e.target.style.background="#f1f5f9";e.target.style.transform="translateY(0)";}}
           >Get in touch</button>
+          <a href="/Ameya_Bhalerao_Resume.pdf" download style={{
+            padding:"14px 28px",borderRadius:10,fontSize:14,fontWeight:600,cursor:"pointer",
+            background:"transparent",color:"#94a3b8",border:"1px solid rgba(255,255,255,0.1)",
+            transition:"all 0.2s",display:"inline-flex",alignItems:"center",gap:8,textDecoration:"none",
+          }}
+            onMouseEnter={e=>{e.currentTarget.style.borderColor="rgba(255,255,255,0.25)";e.currentTarget.style.color="#f1f5f9";e.currentTarget.style.transform="translateY(-2px)";}}
+            onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(255,255,255,0.1)";e.currentTarget.style.color="#94a3b8";e.currentTarget.style.transform="translateY(0)";}}
+          >
+            <span style={{fontSize:16}}>↓</span> Download Resume
+          </a>
           <button onClick={()=>scrollTo("about")} style={{
             padding:"14px 32px",borderRadius:10,fontSize:14,fontWeight:600,cursor:"pointer",
             background:"transparent",color:"#94a3b8",border:"1px solid rgba(255,255,255,0.1)",transition:"all 0.2s",
@@ -719,6 +729,14 @@ export default function Portfolio() {
               onMouseEnter={e=>{e.target.style.borderColor="rgba(255,255,255,0.25)";e.target.style.color="#f1f5f9";}}
               onMouseLeave={e=>{e.target.style.borderColor="rgba(255,255,255,0.1)";e.target.style.color="#94a3b8";}}
             >GitHub</a>
+            <a href="/Ameya_Bhalerao_Resume.pdf" download style={{
+              padding:"14px 32px",borderRadius:10,fontSize:14,fontWeight:600,
+              background:"transparent",color:"#94a3b8",border:"1px solid rgba(255,255,255,0.1)",
+              transition:"all 0.2s",display:"inline-flex",alignItems:"center",gap:8,textDecoration:"none",
+            }}
+              onMouseEnter={e=>{e.currentTarget.style.borderColor="rgba(255,255,255,0.25)";e.currentTarget.style.color="#f1f5f9";}}
+              onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(255,255,255,0.1)";e.currentTarget.style.color="#94a3b8";}}
+            >↓ Resume</a>
           </div>
         </AnimatedSection>
       </section>
