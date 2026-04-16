@@ -19,10 +19,42 @@ const EXPERIENCES = [
 ];
 
 const PROJECTS = [
-  { name:"Betting Edge", tag:"Sports Analytics Copilot", tech:["Python","Streamlit","LangChain","XGBoost","SQLite","Hugging Face"],
-    desc:"End-to-end copilot translating natural-language match queries into predictions. Aggregated 5 APIs, 35% latency reduction. XGBoost + transformer safety classifier at 89% accuracy.", gradient:"from-cyan-500 to-blue-600" },
-  { name:"SmartGrocery System", tag:"Computer Vision", tech:["YOLOv5","Python","Streamlit"],
-    desc:"Led 4-member team building YOLOv5 grocery detection — 96% accuracy on 10K images, 500ms inference, 90% user satisfaction from 50+ pilot testers.", gradient:"from-violet-500 to-purple-600" },
+  { name:"Betting Edge", tag:"Multi-Agent Decision Support", tech:["Python","Streamlit","LangChain","XGBoost","SQLite","Hugging Face"],
+    desc:"Multi-agent system combining ML models, rule-based logic, risk profiling & safety checks for responsible, personalized betting recommendations across football & basketball.",
+    color:"#06b6d4", icon:"⚽", github:"https://github.com/BettingApp-hcai/betting_edge", date:"Aug 2025 – Jan 2026" },
+  { name:"GroceryVision", tag:"Computer Vision + YOLOv5", tech:["YOLOv5","Python","Streamlit"],
+    desc:"Led 4-person team building end-to-end grocery detection — 96% accuracy on 10K images, 500ms response, recommendation engine boosting engagement 25%, 90% user satisfaction.",
+    color:"#8b5cf6", icon:"🛒", github:"https://github.com/ab39912/GroceryVision", date:"Jan – May 2025" },
+  { name:"EmailBox Assistant", tag:"LLM Email Automation", tech:["FastAPI","LangChain","LlamaIndex","Gmail API"],
+    desc:"Automated 80%+ email triage using LLM-based pipelines, reducing manual handling by 60%. Scalable FastAPI backend with Gmail API integration.",
+    color:"#f59e0b", icon:"✉", date:"2025" },
+  { name:"Travel Multi-Agent", tag:"AI Agent System", tech:["Python","LangGraph","LangChain"],
+    desc:"Multi-agent travel planning system using LangGraph for orchestration. Agents handle flights, hotels, itineraries & budget optimization collaboratively.",
+    color:"#10b981", icon:"✈", github:"https://github.com/ab39912/travel-multi-agent", date:"2025" },
+  { name:"Banking API Platform", tag:"Full-Stack Backend", tech:["Spring Boot","PostgreSQL","Docker","CI/CD","JWT"],
+    desc:"REST APIs for users, accounts & transactions with role-based access control and JWT auth. Deployed via Docker + GitHub Actions CI/CD pipeline.",
+    color:"#ef4444", icon:"🏦", date:"2025" },
+  { name:"SC Energy & Weather", tag:"Data Analytics in R", tech:["R","Streamlit","Random Forest","Linear Regression"],
+    desc:"Forecasted hourly energy demand across 5,000+ South Carolina properties using Random Forest & Linear Regression, improving prediction accuracy by 25%.",
+    color:"#3b82f6", icon:"⚡", date:"2025" },
+  { name:"Emotion Detection Pipeline", tag:"NLP Research", tech:["PyTorch","RoBERTa","DistilBERT","ALBERT","Hugging Face"],
+    desc:"Fine-tuned RoBERTa, DistilBERT & ALBERT on 2.3M tweets for emotion detection. Custom attention mechanisms + TF-IDF gating for robustness.",
+    color:"#ec4899", icon:"🧠", date:"2025" },
+  { name:"Heart Attack Prediction", tag:"ML Classification", tech:["Python","scikit-learn","XGBoost","SVM"],
+    desc:"Compared 7 ML classifiers (Logistic Regression, Random Forest, SVM, XGBoost, etc.) for heart attack risk. SVM achieved best accuracy at 98%. Key features: chest pain, exercise-induced angina.",
+    color:"#f97316", icon:"❤", github:"https://github.com/ab39912/Heart-Attack-Prediction", date:"Sep – Nov 2023" },
+  { name:"Stock Prediction (LSTM)", tag:"Deep Learning + Finance", tech:["Python","Keras","TensorFlow","LSTM","Streamlit"],
+    desc:"Streamlit web app fetching Yahoo Finance data, plotting 100/200 moving averages, and predicting stock prices using LSTM neural networks. Train-test split with sklearn scaling.",
+    color:"#a855f7", icon:"📈", github:"https://github.com/ab39912/Stock-Prediction-using-LSTM", date:"Jul – Aug 2023" },
+  { name:"Airbnb Dataset Analysis", tag:"Data Visualization", tech:["Python","Tableau","Pandas","Seaborn","Matplotlib"],
+    desc:"Exploratory analysis of Airbnb dataset using Python ML libraries and Tableau. Created interactive dashboards combining multiple worksheets for actionable insights.",
+    color:"#14b8a6", icon:"🏠", github:"https://github.com/ab39912/AirBNB-Dataset", date:"Jun – Jul 2023" },
+  { name:"Portable ECG Kit", tag:"IoT + Healthcare", tech:["Arduino","IoT","Wi-Fi","Ubidots Cloud"],
+    desc:"Wearable IoT node gathering ECG data transmitted via Wi-Fi to Ubidots cloud, enabling remote doctor monitoring. Drastically reduced cost of portable cardiac monitoring.",
+    color:"#0ea5e9", icon:"💊", date:"Oct 2022 – May 2023" },
+  { name:"Covid-19 Health Monitor", tag:"IoT + Published Research", tech:["Arduino","MySQL","Sensors"],
+    desc:"IoT circuit for quarantined patients to self-monitor temperature & heart rate with MySQL database alerts. Published as academic research paper.",
+    color:"#22c55e", icon:"🦠", date:"2022" },
 ];
 
 const SERVICES = [
@@ -174,40 +206,47 @@ function ExperienceItem({exp,index}) {
 }
 
 function ProjectCard({project,index}) {
-  const [ref,vis]=useInView(0.15);
+  const [ref,vis]=useInView(0.1);
   const [hover,setHover]=useState(false);
+  const p = project;
   return (
     <div ref={ref} style={{
-      opacity:vis?1:0, transform:vis?"translateY(0)":`translateY(40px)`,
-      transition:`all 0.7s cubic-bezier(0.16,1,0.3,1) ${index*200}ms`,
-      flex:"0 0 min(500px, 85vw)", scrollSnapAlign:"start",
+      opacity:vis?1:0, transform:vis?"translateY(0)":"translateY(30px)",
+      transition:`all 0.6s cubic-bezier(0.16,1,0.3,1) ${index*80}ms`,
     }}>
       <div onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)} style={{
-        borderRadius:20, overflow:"hidden",
-        background:"rgba(255,255,255,0.02)",
-        border:`1px solid ${hover?"rgba(255,255,255,0.12)":"rgba(255,255,255,0.05)"}`,
-        transition:"all 0.4s ease",
-        transform:hover?"translateY(-8px) scale(1.01)":"translateY(0) scale(1)",
-        boxShadow:hover?"0 20px 60px rgba(0,0,0,0.4)":"none",
+        borderRadius:16, overflow:"hidden", height:"100%",
+        background:hover?"rgba(255,255,255,0.04)":"rgba(255,255,255,0.02)",
+        border:`1px solid ${hover?p.color+"44":"rgba(255,255,255,0.05)"}`,
+        transition:"all 0.35s ease", cursor:"default",
+        transform:hover?"translateY(-6px)":"translateY(0)",
+        boxShadow:hover?`0 16px 48px ${p.color}15`:"none",
+        display:"flex",flexDirection:"column",
       }}>
         <div style={{
-          height:200, background:`linear-gradient(135deg,${project.gradient==="from-cyan-500 to-blue-600"?"#06b6d4,#2563eb":"#8b5cf6,#9333ea"})`,
+          height:120, background:`linear-gradient(135deg,${p.color}22,${p.color}08)`,
           display:"flex",alignItems:"center",justifyContent:"center",
-          fontSize:64, position:"relative", overflow:"hidden",
+          fontSize:48, position:"relative",
         }}>
-          <div style={{position:"absolute",inset:0,background:"rgba(0,0,0,0.2)"}} />
-          <span style={{position:"relative",zIndex:1,filter:hover?"brightness(1.2)":"brightness(1)",transition:"filter 0.3s"}}>
-            {project.name==="Betting Edge"?"⚽":"🛒"}
-          </span>
+          <span style={{filter:hover?"scale(1.15)":"scale(1)",transition:"filter 0.3s,transform 0.3s",
+            transform:hover?"scale(1.15)":"scale(1)"}}>{p.icon}</span>
+          {p.github && <a href={p.github} target="_blank" rel="noopener noreferrer"
+            style={{position:"absolute",top:12,right:12,fontSize:11,padding:"4px 10px",borderRadius:8,
+              background:"rgba(0,0,0,0.3)",color:"#94a3b8",textDecoration:"none",
+              border:"1px solid rgba(255,255,255,0.1)",transition:"all 0.2s"}}
+            onMouseEnter={e=>{e.target.style.color="#f1f5f9";e.target.style.background="rgba(0,0,0,0.5)";}}
+            onMouseLeave={e=>{e.target.style.color="#94a3b8";e.target.style.background="rgba(0,0,0,0.3)";}}
+          >GitHub →</a>}
         </div>
-        <div style={{padding:"24px 28px"}}>
-          <p style={{fontSize:12,color:"#64748b",textTransform:"uppercase",letterSpacing:1.5,fontWeight:600,margin:0}}>{project.tag}</p>
-          <h3 style={{fontSize:22,fontWeight:700,color:"#f1f5f9",margin:"8px 0 12px"}}>{project.name}</h3>
-          <p style={{fontSize:14,color:"#94a3b8",lineHeight:1.7,margin:"0 0 16px"}}>{project.desc}</p>
-          <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
-            {project.tech.map(t=>(
-              <span key={t} style={{padding:"4px 12px",borderRadius:20,fontSize:11,fontWeight:500,
-                background:"rgba(255,255,255,0.06)",color:"#cbd5e1",border:"1px solid rgba(255,255,255,0.08)"}}>{t}</span>
+        <div style={{padding:"20px 24px",flex:1,display:"flex",flexDirection:"column"}}>
+          <p style={{fontSize:11,color:p.color,textTransform:"uppercase",letterSpacing:1.5,fontWeight:600,margin:0}}>{p.tag}</p>
+          <h3 style={{fontSize:18,fontWeight:700,color:"#f1f5f9",margin:"6px 0 4px"}}>{p.name}</h3>
+          <p style={{fontSize:11,color:"#475569",margin:"0 0 10px",fontFamily:"monospace"}}>{p.date}</p>
+          <p style={{fontSize:13,color:"#94a3b8",lineHeight:1.65,margin:"0 0 14px",flex:1}}>{p.desc}</p>
+          <div style={{display:"flex",flexWrap:"wrap",gap:5}}>
+            {p.tech.map(t=>(
+              <span key={t} style={{padding:"3px 10px",borderRadius:20,fontSize:10,fontWeight:500,
+                background:`${p.color}12`,color:`${p.color}cc`,border:`1px solid ${p.color}22`}}>{t}</span>
             ))}
           </div>
         </div>
@@ -562,7 +601,7 @@ export default function Portfolio() {
         </AnimatedSection>
       </section>
 
-      {/* ─── EXPERIENCE ─── */}
+      {/* ─── EXPERIENCE (two-column layout) ─── */}
       <section ref={el=>sectionRefs.current["experience"]=el} style={{padding:"80px max(40px,8vw) 100px"}}>
         <AnimatedSection>
           <p style={{fontSize:13,color:"#64748b",textTransform:"uppercase",letterSpacing:2,fontWeight:600,marginBottom:8}}>Career Path</p>
@@ -583,7 +622,7 @@ export default function Portfolio() {
           ))}
         </div>
 
-        <div style={{maxWidth:700}}>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
           {filteredExp.map((e,i)=><ExperienceItem key={e.role+e.org} exp={e} index={i} />)}
         </div>
       </section>
@@ -617,30 +656,16 @@ export default function Portfolio() {
       {/* ─── PROJECTS ─── */}
       <section ref={el=>sectionRefs.current["projects"]=el} style={{padding:"100px max(40px,8vw)"}}>
         <AnimatedSection>
-          <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-end",marginBottom:48}}>
-            <div>
-              <p style={{fontSize:13,color:"#64748b",textTransform:"uppercase",letterSpacing:2,fontWeight:600,marginBottom:8}}>Featured Work</p>
-              <h2 style={{fontSize:"clamp(28px,3.5vw,42px)",fontWeight:700,color:"#f1f5f9",letterSpacing:-1}}>
-                Streamlined digital<br/>experiences.
-              </h2>
-            </div>
-            <div style={{display:"flex",gap:8}}>
-              <button onClick={()=>scrollProjects(-1)} style={{
-                width:40,height:40,borderRadius:10,border:"1px solid rgba(255,255,255,0.1)",
-                background:"transparent",color:"#94a3b8",cursor:"pointer",fontSize:18,display:"flex",alignItems:"center",justifyContent:"center",
-              }}>←</button>
-              <button onClick={()=>scrollProjects(1)} style={{
-                width:40,height:40,borderRadius:10,border:"1px solid rgba(255,255,255,0.1)",
-                background:"transparent",color:"#94a3b8",cursor:"pointer",fontSize:18,display:"flex",alignItems:"center",justifyContent:"center",
-              }}>→</button>
-            </div>
+          <div style={{marginBottom:48}}>
+            <p style={{fontSize:13,color:"#64748b",textTransform:"uppercase",letterSpacing:2,fontWeight:600,marginBottom:8}}>Featured Work</p>
+            <h2 style={{fontSize:"clamp(28px,3.5vw,42px)",fontWeight:700,color:"#f1f5f9",letterSpacing:-1}}>
+              Projects
+            </h2>
+            <p style={{fontSize:15,color:"#64748b",marginTop:8,maxWidth:500}}>A selection of projects spanning ML, NLP, computer vision, full-stack, and data analytics.</p>
           </div>
         </AnimatedSection>
 
-        <div ref={projectsScrollRef} style={{
-          display:"flex",gap:24,overflowX:"auto",scrollSnapType:"x mandatory",
-          paddingBottom:16,scrollbarWidth:"none",msOverflowStyle:"none",
-        }}>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(300px,1fr))",gap:20}}>
           {PROJECTS.map((p,i)=><ProjectCard key={p.name} project={p} index={i} />)}
         </div>
       </section>
