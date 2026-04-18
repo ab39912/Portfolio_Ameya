@@ -30,7 +30,7 @@ const LEARNING_OUTCOMES = [
   { id:"PLO 5", title:"Communicate insights effectively", desc:"Communicate insights via visualization and analytics to a broad range of audiences including project sponsors and technical team leads.",
     projects:["Betting Edge","GroceryVision","Airbnb Dataset Analysis","SC Energy & Weather"] },
   { id:"PLO 6", title:"Apply ethics in data science", desc:"Apply ethics in the development, use, and evaluation of data and predictive models including fairness, bias, transparency, and privacy.",
-    projects:["Betting Edge","Emotion Detection Pipeline","Covid-19 Health Monitor"] },
+    projects:["Betting Edge","Emotion Detection Pipeline"] },
 ];
 
 const TRACKS = [
@@ -875,7 +875,7 @@ export default function Portfolio() {
                   </tr>
                 </thead>
                 <tbody>
-                  {["Betting Edge","Emotion Detection Pipeline","GroceryVision","Banking API Platform","SC Energy & Weather","Heart Attack Prediction","Stock Prediction (LSTM)","Airbnb Dataset Analysis","Travel Multi-Agent","Covid-19 Health Monitor"].map(projName=>(
+                  {["Betting Edge","Emotion Detection Pipeline","GroceryVision","Banking API Platform","SC Energy & Weather","Heart Attack Prediction","Stock Prediction (LSTM)","Airbnb Dataset Analysis","Travel Multi-Agent"].map(projName=>(
                     <tr key={projName}>
                       <td style={{padding:"10px 12px",color:"#cbd5e1",borderBottom:"1px solid rgba(255,255,255,0.03)",fontWeight:500}}>{projName}</td>
                       {LEARNING_OUTCOMES.map(lo=>(
@@ -924,14 +924,20 @@ export default function Portfolio() {
               border:"1px solid rgba(255,255,255,0.08)",
             }}>
               <iframe
-                src="https://www.loom.com/embed/44b4d52c220b41888f58c922e001794f"
+                src="https://www.loom.com/embed/44b4d52c220b41888f58c922e001794f?sid=loom-embed"
                 frameBorder="0"
+                webkitallowfullscreen="true"
+                mozallowfullscreen="true"
                 allowFullScreen
+                allow="autoplay; fullscreen; picture-in-picture"
                 style={{position:"absolute",top:0,left:0,width:"100%",height:"100%",border:"none"}}
                 title="Program Reflection Video"
               />
             </div>
-            <div style={{maxWidth:820,marginTop:12,display:"flex",justifyContent:"flex-end"}}>
+            <div style={{maxWidth:820,marginTop:12,display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:8}}>
+              <p style={{fontSize:11,color:"#475569",margin:0}}>
+                Video not loading? <a href="https://www.loom.com/share/44b4d52c220b41888f58c922e001794f" target="_blank" rel="noopener noreferrer" style={{color:"#f97316",textDecoration:"underline"}}>Watch on Loom</a>
+              </p>
               <a href="https://www.loom.com/share/44b4d52c220b41888f58c922e001794f" target="_blank" rel="noopener noreferrer" style={{
                 fontSize:12,color:"#64748b",transition:"color 0.2s",
               }}
